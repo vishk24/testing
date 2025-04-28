@@ -26,42 +26,12 @@ alert udp any any -> $HOME_NET any ( msg:"UDP flood detected"; threshold:type th
 #  - ACK scan  (flags:A)
 #  - UDP scan  (just any UDP to a closed port)
 #
-alert tcp any any -> $HOME_NET any (
-msg:"FIN scan detected";
-flags:F;
-threshold:type threshold, track by_src, count 20, seconds 60;
-sid:1000005;
-rev:1;
-)
+alert udp any any -> $HOME_NET any ( msg:"UDP flood detected"; threshold:type threshold, track by_src, count 10, seconds 60; sid:1000004; rev:1; )
 
-alert tcp any any -> $HOME_NET any (
-msg:"XMAS scan detected";
-flags:FPU;
-threshold:type threshold, track by_src, count 20, seconds 60;
-sid:1000006;
-rev:1;
-)
+alert tcp any any -> $HOME_NET any ( msg:"XMAS scan detected"; flags:FPU; threshold:type threshold, track by_src, count 20, seconds 60; sid:1000006; rev:1; )
 
-alert tcp any any -> $HOME_NET any (
-msg:"NULL scan detected";
-flags:0;
-threshold:type threshold, track by_src, count 20, seconds 60;
-sid:1000007;
-rev:1;
-)
+alert tcp any any -> $HOME_NET any ( msg:"NULL scan detected"; flags:0; threshold:type threshold, track by_src, count 20, seconds 60; sid:1000007; rev:1; )
 
-alert tcp any any -> $HOME_NET any (
-msg:"ACK scan detected";
-flags:A;
-threshold:type threshold, track by_src, count 20, seconds 60;
-sid:1000008;
-rev:1;
-)
+alert tcp any any -> $HOME_NET any ( msg:"ACK scan detected"; flags:A; threshold:type threshold, track by_src, count 20, seconds 60; sid:1000008; rev:1; )
 
-alert udp any any -> $HOME_NET any (
-msg:"UDP scan detected";
-threshold:type threshold, track by_src, count 20, seconds 60;
-sid:1000009;
-rev:1;
-)
-
+alert udp any any -> $HOME_NET any ( msg:"UDP scan detected"; threshold:type threshold, track by_src, count 20, seconds 60; sid:1000009; rev:1; )  
